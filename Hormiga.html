@@ -56,6 +56,9 @@
 		async function iniciar(){
 			this.ejecuciones++;
 			let casilla=document.getElementById(this.hormiga.fila+','+this.hormiga.columna);
+			if(casilla==null){
+				return;
+			}
 			if(casilla.getAttribute("class")=='blanco'){
 				casilla.setAttribute("class","negro");
 			}else{
