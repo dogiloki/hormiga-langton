@@ -31,7 +31,7 @@
 			columna:0,
 			mira:"norte"
 		};
-		function dimencionar(){
+		function dimencionar(ejecutar=false){
 			this.filas=document.getElementById('filas').value;
 			this.columnas=document.getElementById('columnas').value;
 			this.filas=this.filas>=100?100:this.filas;
@@ -46,14 +46,21 @@
 				}
 				tabla+="</tr>";
 			}
-			hormiga.fila=Math.round(this.filas/2);
-			hormiga.columna=Math.round(this.columnas/2);
 			document.getElementById('tabla').innerHTML=tabla;
+			this.posicionarHormiga();
+			if(ejecutar){
+				iniciar();
+			}
+		}
+		function posicionarHormiga(){
+			ejecuciones=0;
+			this.hormiga.fila=Math.floor(this.filas/2);
+			this.hormiga.columna=Math.floor(this.columnas/2);
 		}
 		function cambioVelocidad(){
 			this.velocidad=document.getElementById('velocidad').value;
 		}
-		async function iniciar(){
+		function iniciar(){
 			this.ejecuciones++;
 			let casilla=document.getElementById(this.hormiga.fila+','+this.hormiga.columna);
 			if(casilla==null){
@@ -110,7 +117,7 @@
 	<input type="number" id="filas" onkeyup="dimencionar()" value="40">
 	<input type="number" id="columnas" onkeyup="dimencionar()" value="40">
 	Milisegundos<input type="number" id="velocidad" onkeyup="cambioVelocidad()" value="100">
-	<button onclick="dimencionar();ejecuciones=0;iniciar()">Iniciar</button>
+	<button onclick="dimencionar(true)">Iniciar</button>
 	<div id="posicion"></div>
 	<table id="tabla"></table>
 
