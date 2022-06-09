@@ -25,6 +25,7 @@
 		var filas;
 		var columnas;
 		var velocidad;
+		var ejecuciones=0;
 		var hormiga={
 			fila:0,
 			columna:0,
@@ -53,6 +54,7 @@
 			this.velocidad=document.getElementById('velocidad').value;
 		}
 		async function iniciar(){
+			this.ejecuciones++;
 			let casilla=document.getElementById(this.hormiga.fila+','+this.hormiga.columna);
 			if(casilla.getAttribute("class")=='blanco'){
 				casilla.setAttribute("class","negro");
@@ -93,7 +95,7 @@
 					}
 					break;
 			}
-			document.getElementById('posicion').innerHTML=this.hormiga.fila+", "+this.hormiga.columna+" - "+this.hormiga.mira;
+			document.getElementById('posicion').innerHTML="Hormiga: "+this.hormiga.fila+", "+this.hormiga.columna+" - "+this.hormiga.mira+"<br>Ejecuciones: "+this.ejecuciones;
 			if(this.hormiga.fila>=0 && this.hormiga.fila<this.filas && this.hormiga.columna>=0 && this.hormiga.columna<this.columnas){
 				setTimeout(iniciar,this.velocidad);
 			}
@@ -105,7 +107,7 @@
 	<input type="number" id="filas" onkeyup="dimencionar()" value="40">
 	<input type="number" id="columnas" onkeyup="dimencionar()" value="40">
 	Milisegundos<input type="number" id="velocidad" onkeyup="cambioVelocidad()" value="100">
-	<button onclick="dimencionar();iniciar()">Iniciar</button>
+	<button onclick="dimencionar();ejecuciones=0;iniciar()">Iniciar</button>
 	<div id="posicion"></div>
 	<table id="tabla"></table>
 
