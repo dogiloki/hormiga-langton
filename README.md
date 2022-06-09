@@ -1,1 +1,2 @@
 # hormiga-langton
+Lo único  que hace es mostrar el algoritmo de langton, donde si una casilla esta de colo blanco la pinta de negro y gira a la izquierda. Si esta pintada de negro la pinta de blanco y gira a la derecha.
